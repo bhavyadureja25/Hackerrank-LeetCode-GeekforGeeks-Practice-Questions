@@ -275,24 +275,509 @@ print(numpy.reshape(my_array,(3,3)))
 
 # /////////////////////////////////////////////////////////////////////////////////////
 
-# /////////////////////////////////////////////////////////////////////////////////////
+# Checking if a point lies inside or outside a rectange
+
+Tx, Ty, Bx, By = map(float, input().split(","))
+
+Px, Py = map(float, input().split(","))
+
+if Px > Tx and Px < Bx and Py > By and Py < Ay:
+
+    print("Inside the rectangle")
+
+elif Px == Tx or Px == Bx or Py == Ty or Py == By:
+
+    print("On the rectangle")
+
+else:
+
+    print("Outside the rectangle")
 
 # /////////////////////////////////////////////////////////////////////////////////////
 
-# /////////////////////////////////////////////////////////////////////////////////////
+# Checking if a point is inside or ouside a circle
+
+cx, cy, r=map(float,input().split(' '))
+px,py=map(float,input().split(' '))
+import math 
+d=math.sqrt((cx-px)**2 +(cy-py)**2)
+print(d)
+if d<r:
+    print('Inside the circle')
+else:
+    print('Outside the circle')
 
 # /////////////////////////////////////////////////////////////////////////////////////
 
-# /////////////////////////////////////////////////////////////////////////////////////
+# Vstack and hsptack in arrays
+
+import numpy as np
+a=np.random.rand(5,4,3)
+b=np.random.rand(2,4,3)
+c=np.vstack((a,b))
+print(c)
+#we were to vertically stck these matrices since the width and depth is the same of both the matrices 
+d=np.concatenate((a,b), axis=0)
+print(d)
 
 # /////////////////////////////////////////////////////////////////////////////////////
 
-# /////////////////////////////////////////////////////////////////////////////////////
+# Finidng peaks in a list
+
+l1=[1,2,4,5,4,6,7,8,6,10,15]
+if l1[0]>=l1[1]:
+    print(l1[0])
+if l1[len(l1)-1]<=l1[-1]:
+    print(l1[-1])
+for i in range(1,len(l1)-1):
+    if (l1[i]>=l1[i+1]) and (l1[i]>=l1[i-1]):
+        print(l1[i])
+#the time complexity of this function is O(n)
 
 # /////////////////////////////////////////////////////////////////////////////////////
 
-# /////////////////////////////////////////////////////////////////////////////////////
+# checking if two circles intersetc at only one point i.e., if the circles are orthogonal?
+
+import math
+c1_x, c1_y, r1=map(float, input().split(' '))
+c2_x, c2_y, r2=map(float, input().split(' '))
+d12=math.sqrt((c1_x - c2_x)**2 + (c1_y-c2_y)**2)
+if d12==r1+r2:
+    print('Only one intersection')
+else:
+    print('Not one intersection')
 
 # /////////////////////////////////////////////////////////////////////////////////////
 
+# Factorial of a number
+
+def factorial(n):
+    r=1
+    for i in range(1,n+1):
+        r*=i
+    return r 
+print(factorial(10))
+
+float_str=str(factorial(10))
+print(float_str[:11])
+
 # /////////////////////////////////////////////////////////////////////////////////////
+
+# Finding x such that sinx(x)-cos(x) = 0
+
+import math 
+import random
+
+def f(x):
+    return math.cos(x)- math.sin(x)
+
+lower_l=0
+upper_l=1
+
+#calculating the middle point which be used for bisection 
+x=(upper_l+lower_l)/2
+
+while (abs(f(x))>0.0001):
+    print(lower_l, upper_l)
+    x=(upper_l+lower_l)/2
+    if f(x)>0:
+        lower_l=x
+    else:
+        upper_l=x
+    
+print('f(x): ',f(x),'x: ',x)  
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# x^5-x^4 + 2*x^3 - x^2 +x = 3
+
+def f(x):
+    return ((x**5)-(x**4) + (2*x**3) - (x**2) +x-3)
+
+lower_l=1
+upper_l=1.4
+
+#calculating the middle point which be used for bisection 
+x=(upper_l+lower_l)/2
+
+while abs(f(x))>0.0001:
+    print(lower_l, upper_l)
+    x=(upper_l+lower_l)/2
+    if f(x)>0:
+        lower_l=x
+    else:
+        upper_l=x
+    
+print('f(x): ',f(x),'x: ',x)  
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# Area using the trapezoid rule 
+import math
+
+def function_sin(x):
+
+    if(x==1):
+
+        return 1
+
+    else:
+
+        return math.sin(x)/x
+x= -10
+
+delta_val = 0.1
+
+area = 0.0
+
+while(x<=10):
+
+    if(x==0):
+
+        continue
+
+    area = area+(function_sin(x)*delta_val + 0.5*delta_val*(function_sin(x+delta_val)-function_sin(x)))
+
+    x = x+delta_val
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# Fibonacci sequence - using the iterative code with time complexity of O(2**n)
+
+def factorial(n):
+    if n==0:
+        return 1
+    elif n==1:
+        return 1
+    fib =factorial(n-1)+factorial(n-2)
+    return fib 
+factorial(5)
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# Using bottom up DP approach to avoid call stack space complexity and thereby getting time complexity as O(n)
+
+def fibonacciIterative(n):
+    f=[]
+    f.appned(0)
+    f.append(1)
+    for i in range(2,n+1):
+        f.append(f[i-1]+f[i-2])
+    return f[n]
+fibonacci(5)
+#what we are doing here: we are calculating f(n-1)+f(n-2) and then saving it at the same position that 
+#would occur in the list F and then calling F[n] as the fibonacci number
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# Alternative way of solving fibonacci problem using while loop
+
+number = int(input())
+first_num =0
+second_num =1
+fib_num = 0
+count =1
+if(number<=1 ):
+    print(number) 
+else:
+    while (count<number):
+        fib_num = first_num+second_num
+        first_num = second_num
+        second_num = fib_num
+        count= count+1
+    print(fib_num)
+
+#////////////////////////////////////////////////////////////////////////////////////////
+
+# Matrix multiplication
+
+import numpy as np
+#X=np.ndarray((3,3))
+#Y=np.copy(X)
+a=[1,1,0,0,1,0,0,0,1]
+a=np.reshape(a, (3,3))
+b=np.copy(a)
+def matrix_multiplication(a,b):
+    result=np.zeros((3,3))
+    for i in range(len(X)):
+        for j in range(len(Y[0])):
+            for k in range(len(Y)):
+                result[i][j] += X[i][k] * Y[k][j]
+    return result
+print(matrix_multiplication(X,Y))
+
+#//////////////////////////////////////////////////////////////////////////////////////////
+
+X = [[12,7,3],
+    [4 ,5,6],
+    [7 ,8,9]]
+# 3x4 matrix
+Y = [[5,8,1,2],
+    [6,7,3,0],
+    [4,5,9,1]]
+# result is 3x4
+result = [[0,0,0,0],
+         [0,0,0,0],
+         [0,0,0,0]]
+
+# iterate through rows of X
+for i in range(len(X)):
+   # iterate through columns of Y
+   for j in range(len(Y[0])):
+       # iterate through rows of Y
+       for k in range(len(Y)):
+            result[i][j] += X[i][k] * Y[k][j]
+
+for r in result:
+    print(r)
+
+#//////////////////////////////////////////////////////////////////////////////////////////
+
+a=input().split(',')
+a=[int(i) for i in a]
+peaks=[]
+for i in range(1,len(a)-1):
+    if a[i]>a[i-1] and a[i]>a[i+1]:
+        peaks.append(a[i])
+print(peaks)
+
+#//////////////////////////////////////////////////////////////////////////////////////////
+
+# input and obtain array a
+s = input().split(",")
+a = [int(i) for i in s]
+
+l=0 # left pointer
+r=len(a)-1 # right pointer
+
+# binary search like code
+while(l<r):
+    mid = (l+r)//2
+    print('m=:',mid)
+    if a[mid] > a[mid+1]:
+        r = mid
+        print('r=:',r)
+    else:
+        l = mid + 1
+        print('l=:',l)
+
+print(l)
+
+#//////////////////////////////////////////////////////////////////////////////////////////
+
+# Solving for x 
+
+import math
+def function(x):
+    return (x**5 - x**4 + 2*(x**3) - x**2 + x -3)
+
+x_l=1
+x_u=1.5
+x=(x_l+x_u)/ 2
+while (abs(function(x))>0.00001):
+    #print(x_l,x_u)
+    
+    x=(x_l+x_u)/ 2
+    if function(x)>0:
+        x_u=x
+    else:
+        x_l=x
+    #print(function(x), x_l, x_u)
+        
+#print(round(x
+
+#//////////////////////////////////////////////////////////////////////////////////////////
+# Alternate way of solving the above problem
+
+from math import exp
+
+l, u, area = 0, 4, 0
+
+while l<=u:
+
+    area += abs((l**3)*0.0001 - exp(l)*0.0001)
+
+    l += 0.0001
+
+print(round(area, 4))
+
+#//////////////////////////////////////////////////////////////////////////////////////////
+
+# Python program to compute factorial
+# of big numbers
+#question 9 - code walkthrough 
+import sys
+ 
+# This function finds factorial of large
+# numbers and prints them
+def factorial( n) :
+    res = [None]*500
+    # Initialize result
+    res[0] = 1
+    res_size = 1
+ 
+    # Apply simple factorial formula
+    # n! = 1 * 2 * 3 * 4...*n
+    x = 2
+    while x <= n :
+        res_size = multiply(x, res, res_size)
+        x = x + 1
+     
+    print ("Factorial of given number is")
+    i = res_size-1
+    while i >= 0 :
+        sys.stdout.write(str(res[i]))
+        sys.stdout.flush()
+        i = i - 1
+         
+ 
+# This function multiplies x with the number
+# represented by res[]. res_size is size of res[]
+# or number of digits in the number represented
+# by res[]. This function uses simple school
+# mathematics for multiplication. This function
+# may value of res_size and returns the new value
+# of res_size
+def multiply(x, res,res_size) :
+     
+    carry = 0 # Initialize carry
+ 
+    # One by one multiply n with individual
+    # digits of res[]
+    i = 0
+    while i < res_size :
+        prod = res[i] *x + carry
+        res[i] = prod % 10; # Store last digit of
+                            # 'prod' in res[]
+        # make sure floor division is used
+        carry = prod//10; # Put rest in carry
+        i = i + 1
+ 
+    # Put carry in res and increase result size
+    while (carry) :
+        res[res_size] = carry % 10
+        # make sure floor division is used
+        # to avoid floating value
+        carry = carry // 10
+        res_size = res_size + 1
+         
+    return res_size
+ 
+# Driver program
+factorial(100)
+
+#//////////////////////////////////////////////////////////////////////////////////////////
+
+## QQ Plots 
+
+import scipy 
+from scipy import stats
+import numpy as np
+import matplotlib.pyplot
+
+x = np.random.normal(loc=5, scale=10, size=10000)
+scipy.stats.probplot(x, dist='uniform', plot=matplotlib.pyplot)
+
+x = np.random.normal(loc=5, scale=10, size=10000)
+scipy.stats.probplot(x, dist='norm', plot=matplotlib.pyplot)
+
+#plotting QQ plots using statsmodel
+
+import statsmodels.api as sm
+import pylab as py
+y = np.random.uniform(low=0, high=100, size=10000)
+sm.qqplot(y, line='45')
+#scipy.stats.probplot(x, y, plot= matplotlib.pyplot)
+
+#ref - https://www.statsmodels.org/stable/generated/statsmodels.graphics.gofplots.qqplot.html
+
+#//////////////////////////////////////////////////////////////////////////////////////////
+
+# exponential distribution 
+
+import seaborn as sns
+e = np.random.exponential(scale=1.0, size=1000)
+sns.set()
+
+#plotting PDF 
+sns.distplot(e)
+kwargs={'cumulative':True}
+#last two parameters are always passed as dict
+sns.distplot(e, hist_kws=kwargs, kde_kws=kwargs)
+
+#//////////////////////////////////////////////////////////////////////////////////////////
+
+#plotting BOX Cox Values 
+
+# https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.boxcox.html
+e_t,l= stats.boxcox(e)
+
+#plotting the QQ plot again 
+
+scipy.stats.probplot(e_t, dist='norm',plot=matplotlib.pyplot)
+
+#//////////////////////////////////////////////////////////////////////////////////////////
+
+# Pareto dictribution 
+
+p = np.random.pareto(5,size=1000)
+sns.distplot(p, hist_kws=kwargs, kde_kws=kwargs)
+sns.distplot
+
+#//////////////////////////////////////////////////////////////////////////////////////////
+
+## Bootstrapping 
+
+n = 100
+s = np.random.beta(2,2,n)
+def bootstrap(s,m):
+    m=s.size
+    index=np.random.randint(n,size=m)
+    r = s[index]
+    return r
+m = 50 
+k = 1000
+medians = np.zeros(k)
+
+for i in range(k):
+    medians[i] = np.median(bootstrap(s,m))
+    
+#calculating CI for 10th percentile 
+
+for i in range(k):
+    medians[i] = np.percentile(bootstrap(s,m),10)
+    
+print('mean:',np.mean(medians))
+print('median:',np.median(medians))
+print('2.5 percentile:',np.percentile(medians,2.5))
+print('97.5 percentile:',np.percentile(medians, 97.5))
+
+#//////////////////////////////////////////////////////////////////////////////////////////
+
+# Box Cox 
+
+import scipy.stats as stats
+import matplotlib.pyplot
+
+x= stats.loggamma.rvs(5, size=10000)+5
+stats.probplot(x, dist='norm', plot=matplotlib.pyplot)
+
+##hence proved, this is not normal
+
+#//////////////////////////////////////////////////////////////////////////////////////////
+
+# now using box cox tranformation to convert log gamma distribution into gaussian
+x_hat,_ = stats.boxcox(x)
+stats.probplot(x_hat, dist='norm', plot=matplotlib.pyplot)
+
+#both the plots coincides, hence, gausssian
+
+#//////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+#//////////////////////////////////////////////////////////////////////////////////////////
+
+#//////////////////////////////////////////////////////////////////////////////////////////
+
+#//////////////////////////////////////////////////////////////////////////////////////////
