@@ -1,0 +1,17 @@
+#////////////////////////////////////////////
+
+def reverse_words_order_and_swap_cases(sentence):
+    final_list=[]
+    for j in sentence:
+        for i in j:
+            if i == str.lower(i):
+                final_list.append(i.upper())
+            if i == str.upper(i):
+                final_list.append(i.lower())
+            if i=='':
+                final_list.append(i)
+    final_list1=''.join(final_list)
+    new_list=final_list1.split('  ')
+    new_list=new_list[::-1]
+    print(" ".join(new_list))
+reverse_words_order_and_swap_cases("aWESOME is cODING")
