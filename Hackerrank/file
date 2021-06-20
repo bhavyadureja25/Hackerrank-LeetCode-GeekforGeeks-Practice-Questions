@@ -1,0 +1,298 @@
+# Insertion sort Algorithm 
+
+
+num = int(input("How many element you want to sort?:"))
+
+print(":Enter elements of list:")
+
+given_list = [int(input(f"Enter Element[{i+1}]:")) for i in range(num)]
+
+print(given_list)
+
+def isort(alist: list):
+
+    print("::::Steps of sort::::")
+
+    for i in range(len(alist)-1):
+
+        k = i
+
+        while(alist[k+1] < alist[k] and k >= 0):
+
+            temp = alist[k+1]
+
+            alist[k+1] = alist[k]
+
+            alist[k] = temp
+
+            k -= 1
+
+        print(given_list)
+
+isort(given_list)
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+#calculating a**b using ieration vs recursion programming
+
+import math
+def recursiveProg(a,b):
+    if b==1:
+        return a 
+    if b%2==0:
+        temp=recursiveProg(a,b/2)
+        return temp*temp 
+    if b%2!=0:
+        c=math.floor(b/2)
+        temp=recursiveProg(a,c)
+        return temp*temp*a
+recursiveProg(2,3)
+
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+#calculating a**b using ieration 
+
+def power(a,b):
+    pr=1
+    for i in range(1,b+1):
+        pr=pr*i
+    return pr
+power(2,8)
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# Mandatory exercise - climbing steps (1 step or 2 step at a time)
+
+import math
+n=int(input())
+if n==1:
+    total_steps=1
+elif n>1:
+    if n%2==0:
+        total_steps = 2+(int(n/2)-1)
+    elif n%2 !=0:
+        total_steps = 1+(n-1)
+print(total_steps)
+
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# Finidng the peak in an array - mandatory excercise 8.15
+
+n=input()
+numbers=[int(i) for i in n.split(',')]
+n1=sorted(numbers)
+n1_max=n1[-1]
+l1=[]
+for i in range(len(numbers)): 
+    if numbers[i]==n1_max:
+        if numbers[i]!=numbers[i+1]:
+            print(i, end=' ')
+
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# Fibonacci sequence - using the iterative code with time complexity of O(2**n)
+
+def fibonacci(n):
+    if n==0:
+        return 0
+    elif n==1:
+        return 1 
+    fib_n=fibonacci(n-1)+fibonacci(n-2)
+    return fib_n
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# Fibonacci using DP whose time complexity is only O(n)
+
+def fibonacci(n):
+    f=[]
+    f.append(0)
+    f.append(1)
+    for i in range(2, n+1):
+        f.append(f[i-1]+f[i-2])
+    return f[n]
+fibonacci(8)
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# Another way of solving fibonacci with Time complexity O(1) without using DP
+number = int(input())
+
+first_num =0
+
+second_num =1
+
+fib_num = 0
+
+count =1
+
+if(number<=1 ):
+
+    print(number) 
+
+else:
+
+    while (count<number):
+
+        fib_num = first_num+second_num
+
+        first_num = second_num
+
+        second_num = fib_num
+
+        count= count+1
+
+    print(fib_num)
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# Matrix multiplication problem using DP 
+
+# Function to find the most efficient way to multiply
+# given sequence of matrices
+def MatrixChainMultiplication(dims, i, j):
+   # base case: one matrix
+   if j <= i + 1:
+        return 0
+ 
+    # stores minimum number of scalar multiplications (i.e., cost)
+    # needed to compute the matrix M[i+1]...M[j] = M[i..j]
+    min = float('inf')
+    # take the minimum over each possible position at which the
+    # sequence of matrices can be split
+ 
+   """
+   (M[i+1]) x (M[i+2]..................M[j])
+   (M[i+1]M[i+2]) x (M[i+3.............M[j])
+   ......
+   (M[i+1]M[i+2]............M[j-1]) x (M[j])
+   """
+    for k in range(i + 1, j):
+        # recur for M[i+1]..M[k] to get an i x k matrix
+        cost = MatrixChainMultiplication(dims, i, k)
+        # recur for M[k+1]..M[j] to get a k x j matrix
+        cost += MatrixChainMultiplication(dims, k, j)
+        # cost to multiply two (i x k) and (k x j) matrix
+        cost += dims[i] * dims[k] * dims[j]
+        if cost < min:
+            min = cost
+ 
+   # return min cost to multiply M[j+1]..M[j]
+    return min
+ 
+if __name__ == '__main__':
+    # Matrix M[i] has dimension dims[i-1] x dims[i] for i = 1..n
+    # input is 10 × 30 matrix, 30 × 5 matrix, 5 × 60 matrix
+    dims = [10, 30, 5, 60]
+print("Minimum cost is", MatrixChainMultiplication(dims, 0, len(dims) - 1))
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# Exception handling
+
+lst=['b',0,1]
+import sys
+for i in lst:
+    try:
+        print('The entry is',i)
+        r=1/int(i)
+    except:
+        print('Oops!', sys.exc_info()[0],'ocurred')
+        print('New entry')
+        print('******')
+print('The reciprocal of entry', i, 'is',r)
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# Handling different types of errors differently
+
+lst=['b',0,1]
+import sys
+for i in lst:
+    try:
+        print('********')
+        print('The entry is',i)
+        r=1/int(i)
+    except(ValueError):
+        print('This is a ValueError')
+    except(ZeroDivisionError):
+        print('This is a zero error')
+    except:
+        print('Some other error')
+print('The reciprocal of entry', i, 'is',r)
+
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# Finding common elements in 2 list
+
+l1=[1,2,3,4,5,6]
+l2=[3,4,5,6,2,7,8,9,0,1,2,3]
+common_ele=[]
+for i in l1:
+    for j in l2:
+        if i==j:
+            common_ele.append(i)
+print('Common elements:', common_ele)
+
+#time compexity of this func is O(m*n)
+#space complexity of this func is O(1)
+
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# Alternate way of doing the above is by converting the smaller list into a dict d
+
+l1=[1,2,3,4,5,6]
+l2=[3,4,5,6,2,7,8,9,0,1,2,3,4,5]
+small_list={}
+for i in l2:
+    small_list[i]=1+i
+cnt=0
+for j in l1:
+    if small_list.get(j) !=None:
+        print(j)
+        cnt+=1
+print('Common elements:', cnt)
+    
+#time compexity of this func is O(m+n)  : bec first its creating a dict d which is taking time m and then comparing n elements with m
+#space complexity of this func is O(M)  : bec this is creating dict d of size m  
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# Taking an input of 9 numbers and converting them into an array of 3X3
+
+import numpy
+n=input()
+n_list=[int(i) for i in n.split(' ')]
+n=3
+final = [n_list[i * n:(i + 1) * n] for i in range((len(n_list) + n - 1) // n )] #floor division
+my_array= numpy.array([final])
+print(numpy.reshape(my_array,(3,3)))
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# /////////////////////////////////////////////////////////////////////////////////////
+
+# /////////////////////////////////////////////////////////////////////////////////////
