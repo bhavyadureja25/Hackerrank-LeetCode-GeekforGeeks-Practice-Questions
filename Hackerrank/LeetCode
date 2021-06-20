@@ -1,0 +1,219 @@
+#### 3rd maximum number 
+
+nums = [2,-1,3]
+nums = sorted(list(set(nums)))
+print(nums)
+set_nums = nums[::-1]
+print(set_nums)
+print(len(set_nums))
+      
+if len(set_nums) == 1:
+    print(set_nums[0])
+if len(set_nums) == 2:
+    print(set_nums[1])
+if len(set_nums)>=3 :
+    print(set_nums[2])
+    
+#/////////////////////////////////////////////////////////////////////////
+
+# replacing alpahebts with empty spaces and then finding the len of distinct numbers 
+
+import re
+word = "a1b01c001"
+word = re.sub('[^0-9]',' ', word)
+numbers = list(word.split(' '))
+numbers = [i for i in numbers if len(i.strip()) > 0]
+numbers = len(set([int(i) for i in numbers]))
+print(numbers)
+
+#/////////////////////////////////////////////////////////////////////////
+
+#Given an integer array nums and an integer k, return true if there are two distinct indices i and j in the array 
+#such that nums[i] == nums[j] and abs(i - j) <= k
+
+nums = [1,2,3,1]
+k = 3
+l = []
+for i in nums: 
+    for j in nums: 
+        print(i,j)
+        if nums[i] == nums[j] and abs(i-j) <=k:
+            l.append('true')
+            print(l)
+        else:
+            pass
+if len(l)>0:
+    print('true')
+else:
+    print('false')
+    
+#/////////////////////////////////////////////////////////////////////////
+
+#Given a non-empty array of decimal digits representing a non-negative integer, increment one to the integer.
+digits = [1,2,3]
+
+number = ",".join([str(i) for i in digits]).replace(',','')
+number = int(number)
+number = str(number + 1)
+list_of_nums = [char for char in number]
+
+#/////////////////////////////////////////////////////////////////////////
+
+# A perfect number is a positive integer that is equal to the sum of its positive divisors, 
+# excluding the number itself. A divisor of an integer x is an integer that can divide x evenly.
+# Given an integer n, return true if n is a perfect number, otherwise return false.
+num = 28
+l = []
+for i in range (1,num):
+    if num%i==0:
+        l.append(i)
+print(l)
+
+if sum(l) == num:
+    print(sum(l), l)
+    print("true") 
+else:
+    print("false")
+
+#/////////////////////////////////////////////////////////////////////////
+
+# Given an integer array flowerbed containing 0's and 1's, where 0 means empty and 1 means not empty,
+# and an integer n, return if n new flowers can be planted in the flowerbed without violating the no-adjacent-flowers rule.
+flowerbed = [1,0,0,0,1,0,0]
+n = 2
+s = 0
+flowerbed = [0] + flowerbed + [0]
+for i in range(1, len(flowerbed)-1):
+    print(i, flowerbed[i])
+    if flowerbed[i]==0 and flowerbed[(i-1)] == 0 and flowerbed[(i+1)]==0:
+        flowerbed[i] = 1
+        s +=1
+        print(flowerbed)
+    
+print(s)
+if n > s:
+    print('False')
+else:
+    print('True')
+    
+#/////////////////////////////////////////////////////////////////////////
+
+# printing the len of the last word in the list of words 
+
+s = "a "
+s = [i for i in s.split(' ') if i!='']
+if len_s == 0:
+    print(0) 
+if len_s == 1:
+    print(len(s[0]))
+if len(s) > 1:
+    print(len(s[-1]))
+            
+
+#/////////////////////////////////////////////////////////////////////////
+
+# Given an array of integers arr, replace each element with its rank.
+
+A = arr = [40,10,20,30]
+D = {j: i+1 for i,j in enumerate(sorted(set(A)))}
+map(D.get, A)
+print(list(map(D.get, A)))
+
+#/////////////////////////////////////////////////////////////////////////
+
+# Given an array arr of integers, check if there exists two integers N and M such that N is the double of M ( i.e. N = 2 * M).
+
+arr = [7,1,14,11]
+doubles = [i*2 for i in arr]
+for i in arr: 
+    for j in doubles: 
+        if i == j:
+            print(True)
+
+#/////////////////////////////////////////////////////////////////////////
+# In a deck of cards, each card has an integer written on it.
+
+# Return true if and only if you can choose X >= 2 such that it is possible to split the entire deck into 1 or more groups of cards, where:
+# Each group has exactly X cards.
+# All the cards in each group have the same integer.
+
+deck = [1,1,1,2,2,2,3,3]
+from collections import Counter 
+if len(deck) < 2 or len(deck) %2 !=0:
+    print('false')
+else:
+    l = Counter(deck)
+    if len(list(set(list(l.values())))) == 1 or all(list(set(list(l.values())))) %2==0:
+        print('true')
+    else:
+        print('false')
+#/////////////////////////////////////////////////////////////////////////
+# check if doubles of an array exist in the array
+
+arr = [3,1,7,11]
+doubles = [i*2 for i in arr]
+print(doubles)
+if any(doubles) in arr: 
+    print(True)
+else:
+    print('false')
+
+#/////////////////////////////////////////////////////////////////////////
+
+## Given an integer n, return true if it is a power of four. Otherwise, return false.
+#An integer n is a power of four, if there exists an integer x such that n == 4x.
+
+def isPowerOfFour(self, n: int) -> bool:
+if n ==1 or n==4:
+    return True
+elif n <= 0:
+    return False
+else:
+    if n%4==0:
+        return  self.isPowerOfFour(n//4)
+    else:
+        return False
+
+#/////////////////////////////////////////////////////////////////////////
+# You are given two arrays  and . Both have dimensions of X.
+# Your task is to compute their matrix product.
+
+import numpy as np
+
+N = int(input())
+A = list([input().split() for i in range(N)])
+B = list([input().split() for i in range(N)])
+array_1 = [int(i) for j in A for i in j]
+array_2 = [int(i) for j in B for i in j]
+dot_product = np.dot(np.array(array_1).reshape(N,N),np.array(array_2).reshape(N,N))
+print(dot_product)
+
+#/////////////////////////////////////////////////////////////////////////
+# You are given two integer arrays of size X and X ( &  are rows, and  is the column). 
+# Your task is to concatenate the arrays along axis .
+
+import numpy as np
+
+N,M,P = [int(i) for i in input().split(' ')]
+A = list([input().split() for i in range(N)])
+B = list([input().split() for i in range(M)])
+array_1 = [int(i) for j in A for i in j]
+array_2 = [int(i) for j in B for i in j]
+
+concatenated = np.concatenate((np.array(array_1).reshape(N,P),np.array(array_2).reshape(M,P)), axis=0)
+print(concatenated)
+
+#/////////////////////////////////////////////////////////////////////////
+
+
+
+#/////////////////////////////////////////////////////////////////////////
+
+
+#/////////////////////////////////////////////////////////////////////////
+
+
+#/////////////////////////////////////////////////////////////////////////
+
+
+#/////////////////////////////////////////////////////////////////////////
