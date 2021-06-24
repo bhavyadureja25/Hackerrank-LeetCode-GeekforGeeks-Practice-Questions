@@ -205,10 +205,36 @@ print(concatenated)
 
 #/////////////////////////////////////////////////////////////////////////
 
+#Given two stings ransomNote and magazine, return true if ransomNote can be constructed from magazine and false otherwise.
+Each letter in magazine can only be used once in ransomNote.
 
+ransomNote = "aa"
+magazine = "ab"
+
+magazine = list(magazine)
+ransomNote = list(ransomNote)
+yes = []
+for i in ransomNote:
+    if i in magazine:
+        yes.append(1)
+        magazine.remove(i)
+    else:
+        yes.append(0)
+if all(yes) == 1:
+    print('True')
+else:
+    print('false')
 
 #/////////////////////////////////////////////////////////////////////////
 
+# Given an array nums of size n, return the majority element. The majority element is the element that appears more than ⌊n / 2⌋ times. 
+# You may assume that the majority element always exists in the array.
+
+from collections import Counter
+count = Counter(nums)
+result = [i for i in list(count.values()) if i >= len(nums)/2]
+num = [k for k, v in count.items() if v == result[0]]
+print(num[0])
 
 #/////////////////////////////////////////////////////////////////////////
 
