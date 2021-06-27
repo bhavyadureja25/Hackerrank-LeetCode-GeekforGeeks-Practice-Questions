@@ -1,0 +1,20 @@
+Reference Link - https://www.geeksforgeeks.org/recursion-practice-problems-solutions/
+
+##############################################################################################
+
+## Write a Recursive Python program to calculate the sum of a list of numbers.
+
+l1 = [2,3,4,5,6,7,8,10,13]
+
+def summ_func(l1):
+  if len(l1)==1:
+    return l1[0]
+  else:
+    return l1[0] + summ_func(l1[1:])
+
+summ_func(l1)
+
+###############################################################################################
+
+
+
